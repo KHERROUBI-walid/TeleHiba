@@ -1,0 +1,73 @@
+services:
+  php:
+    build:
+      context: ./docker/php
+    container_name: hiba_php
+    volumes:
+      - ./app_symfony:/var/www/html
+    environment:
+      PHP_IDE_CONFIG: "serverName=hiba_projet"
+    depends_on:
+      - mysql
+    networks:
+      - hiba_network
+
+  nginx:
+    image: nginx:stable
+    container_name: hiba_nginx
+    ports:
+      - "8082:80"
+    volumes:
+      - ./app_symfony:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - hiba_network
+
+  mysql:
+    image: mysql:8.0
+    container_name: hiba_mysql
+    env_file:
+      - app_symfony/.env
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - hiba_network
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: hiba_phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+    networks:
+      - hiba_network
+
+
+###> symfony/mailer ###
+  mailer:
+    image: axllent/mailpit
+    container_name: hiba_mailpit
+    ports:
+      - "1081:1081"  # Web UI
+      - "1026:1026"  # SMTP port
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+    networks:
+      - hiba_network
+
+volumes:
+  mysql_data:
+
+networks:
+  hiba_network:
+    driver: bridge
