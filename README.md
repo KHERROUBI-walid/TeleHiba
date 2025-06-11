@@ -33,26 +33,30 @@ Elle repose sur une logique simple : **un besoin exprimé = une réponse directe
 
 ---
 
-## 🔐 Modèle de paiement
+# 🔐 Modèle de paiement
 
-> ⚠️ Contrairement aux plateformes où le donateur effectue un don (argent) directement au beneficiare, ici :
+⚠️ Contrairement aux plateformes classiques où les donateurs versent directement de l'argent aux bénéficiaires, notre approche est différente :
 
-- La Famille demande des besoins, pas d'argent (evite des arnaques)(+montant des besoins par mois limité )
-- La **plateforme encaisse d’abord** les paiements
-- Elle agit comme **tiers de confiance** (type *wallet*)
-- Une **transaction interne est déclenchée** vers le vendeur après validation de la livraison
-- Cela permet de :
-  - Gérer les cas de litiges
-  - Regrouper les paiements de plusieurs donateurs
+- La famille exprime ses **besoins** (et non une demande d'argent), ce qui :
+  - Limite les risques d’arnaques
+  - Permet de **limiter les besoins exprimés à un montant mensuel maximum**
+- La **plateforme encaisse les paiements** en amont
+- Elle agit comme un **tiers de confiance**, à la manière d’un portefeuille sécurisé (*wallet*)
+- Une **transaction interne** vers le vendeur est déclenchée **uniquement après validation de la livraison**
+
+### ✅ Ce système permet de :
+- Gérer efficacement les **litiges**
+- Regrouper les **contributions de plusieurs donateurs**
+
 
 ---
 
 ## 🧱 État d’avancement
 
-- ✅ MCD complet (avec entités héritées, relations de composition, évaluations, transactions)
+- ✅ MCD complet
 - ✅ Diagrammes de séquence bout-à-bout (commande, paiement, validation)
 - ✅ Logique de modération, géolocalisation, évaluation implémentée
-- 🔜 Maquette frontend
+- 🔜 Maquette frontend en cours de réalisation+
 
 ---
 
