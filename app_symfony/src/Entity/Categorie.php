@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use App\Entity\Produit;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
@@ -24,6 +27,43 @@ class Categorie
     #[ORM\Column(type: 'datetime')]
     #[Gedmo\Timestampable(on: 'update')]
     private \DateTimeInterface $dateMiseAJour;
+
+    // === Relations === //
+
+    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Produit::class)]
+    private Collection $produits;
+
+    public function __construct()
+    {
+        $this->produits = new ArrayCollection();
+    }
+
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
+
+    public function addProduit(Produit $produit): static
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits[] = $produit;
+            $produit->setCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): static
+    {
+        if ($this->produits->removeElement($produit)) {
+            if ($produit->getCategorie() === $this) {
+                $produit->setCategorie(null);
+            }
+        }
+
+        return $this;
+    }
+
 
     public function getId(): ?int
     {

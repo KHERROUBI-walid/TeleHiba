@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\EvaluationRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use App\Entity\Famille;
+use App\Entity\Vendeur;
 
 #[ORM\Entity(repositoryClass: EvaluationRepository::class)]
 class Evaluation
@@ -28,21 +30,13 @@ class Evaluation
     #[Gedmo\Timestampable(on: 'update')]
     private \DateTimeInterface $dateMiseAJour;
 
-    // === Relations === //
     #[ORM\ManyToOne(inversedBy: 'evaluations')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Famille $famille = null;
 
-    public function getFamille(): ?Famille
-    {
-        return $this->famille;
-    }
-
-    public function setFamille(?Famille $famille): static
-    {
-        $this->famille = $famille;
-        return $this;
-    }
+    #[ORM\ManyToOne(inversedBy: 'evaluations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Vendeur $vendeur = null;
 
     public function getId(): ?int
     {
@@ -57,7 +51,6 @@ class Evaluation
     public function setNote(int $note): static
     {
         $this->note = $note;
-
         return $this;
     }
 
@@ -69,9 +62,9 @@ class Evaluation
     public function setCommentaire(?string $commentaire): static
     {
         $this->commentaire = $commentaire;
-
         return $this;
     }
+
     public function getDateCreation(): ?\DateTimeInterface
     {
         return $this->dateCreation;
@@ -91,6 +84,28 @@ class Evaluation
     public function setDateMiseAJour(\DateTimeInterface $date): static
     {
         $this->dateMiseAJour = $date;
+        return $this;
+    }
+
+    public function getFamille(): ?Famille
+    {
+        return $this->famille;
+    }
+
+    public function setFamille(?Famille $famille): static
+    {
+        $this->famille = $famille;
+        return $this;
+    }
+
+    public function getVendeur(): ?Vendeur
+    {
+        return $this->vendeur;
+    }
+
+    public function setVendeur(?Vendeur $vendeur): static
+    {
+        $this->vendeur = $vendeur;
         return $this;
     }
 }

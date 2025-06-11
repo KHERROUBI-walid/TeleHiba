@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use App\Entity\User;
 use App\Entity\Produit;
+use App\Entity\Evaluation;
 
 #[ORM\Entity(repositoryClass: VendeurRepository::class)]
 class Vendeur
@@ -30,9 +31,13 @@ class Vendeur
     #[ORM\OneToMany(mappedBy: 'vendeur', targetEntity: Produit::class, orphanRemoval: true)]
     private Collection $produits;
 
+    #[ORM\OneToMany(mappedBy: 'vendeur', targetEntity: Evaluation::class, orphanRemoval: true)]
+    private Collection $evaluations;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
+        $this->evaluations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -98,6 +103,33 @@ class Vendeur
         if ($this->produits->removeElement($produit)) {
             if ($produit->getVendeur() === $this) {
                 $produit->setVendeur(null);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Evaluation>
+     */
+    public function getEvaluations(): Collection
+    {
+        return $this->evaluations;
+    }
+
+    public function addEvaluation(Evaluation $evaluation): static
+    {
+        if (!$this->evaluations->contains($evaluation)) {
+            $this->evaluations[] = $evaluation;
+            $evaluation->setVendeur($this);
+        }
+        return $this;
+    }
+
+    public function removeEvaluation(Evaluation $evaluation): static
+    {
+        if ($this->evaluations->removeElement($evaluation)) {
+            if ($evaluation->getVendeur() === $this) {
+                $evaluation->setVendeur(null);
             }
         }
         return $this;

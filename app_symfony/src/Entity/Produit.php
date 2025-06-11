@@ -7,6 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Vendeur;
+use App\Entity\LigneProduit;
+use App\Entity\Categorie;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -97,6 +100,21 @@ class Produit
         return $this;
     }
 
+    // Categorie
+    #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categorie $categorie = null;
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): static
+    {
+        $this->categorie = $categorie;
+        return $this;
+    }
 
     // === Getters and setters ===//
 

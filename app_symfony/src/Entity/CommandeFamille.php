@@ -7,6 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Famille;
+use App\Entity\Paiement;
+use App\Entity\Cagnotte;
+use App\Entity\CommandeVendeur;
 
 #[ORM\Entity(repositoryClass: CommandeFamilleRepository::class)]
 class CommandeFamille
