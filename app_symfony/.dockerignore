@@ -1,0 +1,33 @@
+# Node dependencies
+node_modules
+
+# Webpack Encore build output
+public/build
+
+# Symfony cache and logs
+var/cache
+var/log
+var/sessions
+
+# PHPUnit
+.phpunit.result.cache
+/phpunit.xml.cache
+
+# Env files (local overrides)
+.env.local
+.env.*.local
+
+# Composer / npm / yarn logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor config
+.idea
+.vscode
+*.swp
+*.swo

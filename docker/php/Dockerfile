@@ -51,5 +51,6 @@ WORKDIR /var/www/html
 ENV APP_ENV=dev
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
+
 # Exposer le port FPM
 EXPOSE 9000
