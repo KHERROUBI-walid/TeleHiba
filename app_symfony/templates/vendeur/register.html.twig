@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription Vendeur{% endblock %}
+
+{% block body %}
+    <h1>Compléter le profil Vendeur</h1>
+
+    {{ form_start(vendeurForm) }}
+        {{ form_widget(vendeurForm) }}
+        <button class="btn btn-primary">Valider</button>
+    {{ form_end(vendeurForm) }}
+{% endblock %}

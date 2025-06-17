@@ -69,8 +69,8 @@ services:
     image: axllent/mailpit
     container_name: hiba_mailpit
     ports:
-      - "1081:1081"  # Web UI
-      - "1026:1026"  # SMTP port
+      - "8025:8025"  # Web UI
+      - "1025:1025"  # SMTP port
     environment:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1

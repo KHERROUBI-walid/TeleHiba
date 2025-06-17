@@ -24,7 +24,7 @@ class PaiementCagnotte
     #[Gedmo\Timestampable(on: 'create')]
     private \DateTimeInterface $dateCreation;
 
-    #[ORM\ManyToOne(targetEntity: Donateur::class, inversedBy: 'paiementsCagnotte')]
+    #[ORM\ManyToOne(targetEntity: Donateur::class, inversedBy: 'paiementCagnottes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Donateur $donateur = null;
 

@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<style>
+    .form-floating {
+        position: relative;
+    }
+    .form-floating input,
+    .form-floating select,
+    .form-floating textarea {
+        border: 1px solid #d1d5db;
+        border-radius: 0.75rem;
+        padding: 1.25rem 0.75rem 0.5rem 0.75rem;
+        width: 100%;
+        background-color: white;
+        transition: border 0.2s;
+    }
+    .form-floating label {
+        position: absolute;
+        top: 0.75rem;
+        left: 0.75rem;
+        font-size: 0.875rem;
+        color: #6b7280;
+        pointer-events: none;
+        background: white;
+        padding: 0 0.25rem;
+        transition: all 0.2s ease-in-out;
+    }
+    .form-floating input:focus + label,
+    .form-floating input:not(:placeholder-shown) + label,
+    .form-floating select:focus + label,
+    .form-floating textarea:focus + label {
+        transform: translateY(-1.2rem) scale(0.85);
+        color: #673DE6;
+    }
+</style>
+
+<div class="min-h-screen flex items-center justify-center bg-[#F4F5FF] py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
+
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="bg-red-100 text-red-800 p-3 rounded-md mb-4 text-sm">
+                {{ flash_error }}
+            </div>
+        {% endfor %}
+
+        <h1 class="text-3xl font-extrabold text-center text-[#3B3D4A] mb-6">Créer un compte</h1>
+
+        {{ form_start(registrationForm, {'attr': {'class': 'space-y-4'}}) }}
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.email, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.email) }}
+            {{ form_errors(registrationForm.email) }}
+        </div>
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.plainPassword, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.plainPassword) }}
+            {{ form_errors(registrationForm.plainPassword) }}
+        </div>
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.typeUtilisateur, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.typeUtilisateur) }}
+            {{ form_errors(registrationForm.typeUtilisateur) }}
+        </div>
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.civilite, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.civilite) }}
+            {{ form_errors(registrationForm.civilite) }}
+        </div>
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.nom, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.nom) }}
+            {{ form_errors(registrationForm.nom) }}
+        </div>
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.prenom, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.prenom) }}
+            {{ form_errors(registrationForm.prenom) }}
+        </div>
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.telephone, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.telephone) }}
+            {{ form_errors(registrationForm.telephone) }}
+        </div>
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.adresse, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.adresse) }}
+            {{ form_errors(registrationForm.adresse) }}
+        </div>
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.complAdresse, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.complAdresse) }}
+            {{ form_errors(registrationForm.complAdresse) }}
+        </div>
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.codePostal, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.codePostal) }}
+            {{ form_errors(registrationForm.codePostal) }}
+        </div>
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.ville, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.ville) }}
+            {{ form_errors(registrationForm.ville) }}
+        </div>
+
+        <div class="form-floating">
+            {{ form_widget(registrationForm.pays, {'attr': {'placeholder': ' '}}) }}
+            {{ form_label(registrationForm.pays) }}
+            {{ form_errors(registrationForm.pays) }}
+        </div>
+
+        <div class="flex items-center space-x-2 mt-4">
+            {{ form_widget(registrationForm.agreeTerms) }}
+            {{ form_label(registrationForm.agreeTerms) }}
+            {{ form_errors(registrationForm.agreeTerms) }}
+        </div>
+
+        <button type="submit"
+            class="w-full mt-6 bg-[#673DE6] hover:bg-[#8C85FF] text-white font-semibold py-2 px-4 rounded-xl transition duration-200">
+            S'inscrire
+        </button>
+
+        {{ form_end(registrationForm) }}
+    </div>
+</div>
+{% endblock %}
