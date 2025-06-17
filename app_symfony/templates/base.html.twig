@@ -12,6 +12,27 @@
         {% endblock %}
     </head>
     <body>
+          {# Flash messages #}
+        <div class="fixed top-5 right-5 z-50 space-y-2 max-w-sm">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div
+                        class="p-4 rounded shadow text-white
+                        {% if label == 'success' %}
+                            bg-green-500
+                        {% elseif label == 'warning' %}
+                            bg-yellow-400 text-black
+                        {% elseif label == 'error' %}
+                            bg-red-600
+                        {% else %}
+                            bg-blue-500
+                        {% endif %}
+                        ">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
         {% block body %}{% endblock %}
     </body>
 </html>

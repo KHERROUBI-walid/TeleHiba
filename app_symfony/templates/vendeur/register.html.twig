@@ -3,7 +3,11 @@
 {% block title %}Inscription Vendeur{% endblock %}
 
 {% block body %}
-    <h1>Compléter le profil Vendeur</h1>
+    <h1 class="text-2xl font-semibold mb-4">Compléter le profil Vendeur</h1>
+
+    <div class="mb-6 p-4 bg-yellow-100 border border-yellow-400 text-yellow-800 rounded">
+        <strong>Merci de compléter votre profil</strong> pour pouvoir utiliser la plateforme.
+    </div>
 
     {{ form_start(vendeurForm) }}
         {{ form_widget(vendeurForm) }}
