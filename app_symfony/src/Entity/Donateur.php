@@ -128,10 +128,16 @@ class Donateur
 
     public function setUser(?User $user): static
     {
+        if ($this->user === $user) {
+            return $this;
+        }
+
+        $this->user = $user;
+
         if ($user && $user->getDonateur() !== $this) {
             $user->setDonateur($this);
         }
-        $this->user = $user;
+
         return $this;
     }
 

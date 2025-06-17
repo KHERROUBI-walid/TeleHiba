@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -18,6 +19,7 @@ use App\Entity\Vendeur;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     // === Identifiants / Connexion ===
@@ -71,6 +73,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // === Statut et dates système ===
     #[ORM\Column(length: 30, nullable: true)]
     private ?string $statut = null;
+
+    #[ORM\Column]
+    private bool $isVerified = false;
 
     #[ORM\Column(type: 'datetime')]
     #[Gedmo\Timestampable(on: 'create')]
@@ -255,24 +260,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     // === Relations familles/donateurs/vendeurs ===
 
-#[ORM\OneToOne(mappedBy: 'user', targetEntity: Famille::class, cascade: ['persist', 'remove'])]
-private ?Famille $famille = null;
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Famille::class, cascade: ['persist', 'remove'])]
+    private ?Famille $famille = null;
 
-public function getFamille(): ?Famille
-{
-    return $this->famille;
-}
-
-public function setFamille(?Famille $famille): static
-{
-    $this->famille = $famille;
-
-    if ($famille && $famille->getUser() !== $this) {
-        $famille->setUser($this);
+    public function getFamille(): ?Famille
+    {
+        return $this->famille;
     }
 
-    return $this;
-}
+    public function setFamille(?Famille $famille): static
+    {
+        if ($this->famille === $famille) {
+            return $this;
+        }
+
+        $this->famille = $famille;
+
+        if ($famille && $famille->getUser() !== $this) {
+            $famille->setUser($this);
+        }
+
+        return $this;
+    }
 
     public function getDonateur(): ?Donateur
     {
@@ -281,11 +290,16 @@ public function setFamille(?Famille $famille): static
 
     public function setDonateur(?Donateur $donateur): static
     {
+        if ($this->donateur === $donateur) {
+            return $this;
+        }
+
+        $this->donateur = $donateur;
+
         if ($donateur && $donateur->getUser() !== $this) {
             $donateur->setUser($this);
         }
 
-        $this->donateur = $donateur;
         return $this;
     }
 
@@ -296,11 +310,16 @@ public function setFamille(?Famille $famille): static
 
     public function setVendeur(?Vendeur $vendeur): static
     {
+        if ($this->vendeur === $vendeur) {
+            return $this;
+        }
+
+        $this->vendeur = $vendeur;
+
         if ($vendeur && $vendeur->getUser() !== $this) {
             $vendeur->setUser($this);
         }
 
-        $this->vendeur = $vendeur;
         return $this;
     }
 
@@ -356,6 +375,18 @@ public function setFamille(?Famille $famille): static
                 $probleme->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

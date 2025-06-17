@@ -120,13 +120,19 @@ class Famille
 
     public function setUser(?User $user): static
     {
+        if ($this->user === $user) {
+            return $this;
+        }
+
+        $this->user = $user;
+
         if ($user && $user->getFamille() !== $this) {
             $user->setFamille($this);
         }
 
-        $this->user = $user;
         return $this;
     }
+
 
     public function getCommandesFamille(): Collection
     {
