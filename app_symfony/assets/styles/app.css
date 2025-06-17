@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@tailwind utilities;
-
 .bg-hero-img {
   background-image: url('../images/img3.jpg');
 }
