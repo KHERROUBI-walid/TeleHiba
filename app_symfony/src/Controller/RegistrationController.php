@@ -15,12 +15,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\Mime\Email;
-use App\Entity\Famille;
-use App\Entity\Donateur;
-use App\Entity\Vendeur;
+
 
 class RegistrationController extends AbstractController
 {

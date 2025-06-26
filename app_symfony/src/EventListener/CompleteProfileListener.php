@@ -28,7 +28,7 @@ class CompleteProfileListener
             str_starts_with($request->getPathInfo(), '/_') ||
             str_starts_with($request->getPathInfo(), '/admin') ||
             str_starts_with($request->getPathInfo(), '/_error') ||
-            in_array($route, ['app_logout', 'app_register_famille', 'app_register_vendeur'])
+            in_array($route, ['app_logout', 'app_register_famille', 'app_register_vendeur', 'app_accueil', 'app_verify_email'])
         ) {
             return;
         }

@@ -1,0 +1,106 @@
+{# templates/_header.html.twig #}
+<header dir="ltr" class="flex items-center justify-between px-4 py-3 bg-white shadow-md relative z-50">
+	<div
+		data-controller="mobile-menu">
+		<!-- 🍔 Menu burger (mobile) -->
+		<div class="md:hidden">
+			<button id="burger-toggle" data-mobile-menu-target="toggle" data-action="click->mobile-menu#toggle" class="text-[#673DE6]" aria-label="Ouvrir le menu" aria-expanded="false">
+				<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+				</svg>
+			</button>
+		</div>
+
+		<!-- 📱 Menu mobile (slide-in) -->
+		<nav
+			id="mobile-menu" data-mobile-menu-target="menu" class="fixed top-0 left-0 h-full w-[80%] max-w-xs bg-white border-r border-gray-200 shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden z-50">
+			<!-- ❌ Bouton de fermeture -->
+			<div class="flex justify-end p-4">
+				<button aria-label="Fermer le menu" data-action="click->mobile-menu#toggle" class="text-[#673DE6] hover:text-[#8C85FF]">
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+					</svg>
+				</button>
+			</div>
+
+			<ul class="flex flex-col p-4 space-y-4 text-[#673DE6] font-medium">
+				{% if app.user %}
+					<li>
+						<a href="{{ path('app_accueil') }}" class="hover:text-[#8C85FF]">Mon profil</a>
+					</li>
+					<li>
+						<a href="{{ path('app_accueil') }}" class="hover:text-[#8C85FF]">Paramètres</a>
+					</li>
+					<li>
+						<form action="{{ path('app_logout') }}" method="post">
+							<button type="submit" class="text-red-600 hover:text-[#8C85FF]">Se déconnecter</button>
+						</form>
+					</li>
+					{% if 'ROLE_FAMILLE' in app.user.roles %}
+						<li>
+							<a href="{{ path('app_famille') }}" class="hover:text-[#8C85FF]">Espace Famille</a>
+						</li>
+					{% elseif 'ROLE_DONATEUR' in app.user.roles %}
+						<li>
+							<a href="{{ path('app_donateur') }}" class="hover:text-[#8C85FF]">Espace Donateur</a>
+						</li>
+					{% elseif 'ROLE_VENDEUR' in app.user.roles %}
+						<li>
+							<a href="{{ path('app_vendeur') }}" class="hover:text-[#8C85FF]">Espace Vendeur</a>
+						</li>
+					{% endif %}
+				{% else %}
+					<li>
+						<a href="{{ path('app_login') }}" class="hover:text-[#8C85FF]">Se connecter</a>
+					</li>
+				{% endif %}
+			</ul>
+		</nav>
+	</div>
+
+	<!-- 🟣 Logo -->
+	<div class="flex-1 flex justify-center md:justify-start">
+		<a href="{{ path('app_accueil') }}">
+			<img src="{{ asset('images/Logo1.png') }}" alt="Logo" class="w-[90px]">
+		</a>
+	</div>
+
+	<!-- 📄 Liens navigation (desktop) -->
+	{% if app.user %}
+		<nav class="hidden md:flex items-center space-x-6 text-[#673DE6] font-medium">
+			{% if 'ROLE_FAMILLE' in app.user.roles %}
+				<a href="{{ path('app_famille') }}" class="hover:text-[#8C85FF]">Espace Famille</a>
+			{% elseif 'ROLE_DONATEUR' in app.user.roles %}
+				<a href="{{ path('app_donateur') }}" class="hover:text-[#8C85FF]">Espace Donateur</a>
+			{% elseif 'ROLE_VENDEUR' in app.user.roles %}
+				<a href="{{ path('app_vendeur') }}" class="hover:text-[#8C85FF]">Espace Vendeur</a>
+			{% endif %}
+		</nav>
+	{% endif %}
+
+	<!-- 👤 Connexion / Profil -->
+	<div class="flex items-center space-x-4 relative">
+		{% include 'components/language_switcher.html.twig' %}
+		{% if app.user %}
+			<div data-controller="profile-menu" class="relative">
+				<button id="profile-btn" data-profile-menu-target="button" data-action="click->profile-menu#toggle" class="w-9 h-9 rounded-full overflow-hidden border-2 border-[#673DE6] focus:outline-none" aria-haspopup="true" aria-expanded="false" aria-label="Mon compte">
+					<img src="{{ app.user.photoProfilUrl ?? asset('images/avatar.png') }}" alt="Photo de profil" class="object-cover w-full h-full">
+				</button>
+				<div id="profile-menu" data-profile-menu-target="menu" class="hidden absolute right-0 mt-2 bg-white rounded-lg shadow-md w-48 text-sm z-50">
+					<a href="{{ path('app_accueil') }}" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Mon profil</a>
+					<a href="{{ path('app_accueil') }}" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Paramètres</a>
+					<form action="{{ path('app_logout') }}" method="post">
+						<button type="submit" class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">Se déconnecter</button>
+					</form>
+				</div>
+			</div>
+		{% else %}
+			<a href="{{ path('app_login') }}" title="Connexion" class="text-[#673DE6] hover:text-[#8C85FF]">
+				<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
+				</svg>
+			</a>
+		{% endif %}
+	</div>
+
+</header>

@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'product.add.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="bg-[#F4F5FF] min-h-screen flex flex-col items-center px-4 py-6">
+
+  <div class="flex flex-col items-center mb-8">
+    <h1 class="text-2xl font-bold text-[#3B3D4A]">{{ 'product.add.header'|trans }}</h1>
+    <p class="text-sm text-gray-600">{{ 'product.add.subheader'|trans }}</p>
+  </div>
+
+  <div class="bg-white rounded-2xl shadow-md p-6 w-full max-w-md">
+
+    <div data-controller="modal" class="flex justify-end">
+
+         {# bouton déclencheur #}
+<button
+  data-action="click->modal#open"
+  class="inline-flex items-center gap-1 px-3 py-1.5 mt-2 text-xs font-medium text-[#673DE6] border border-[#673DE6] rounded-lg hover:bg-[#673DE6] hover:text-white transition-colors duration-200"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+  </svg>
+  {{ 'categorie.add.new_option'|trans }}
+</button>
+
+
+
+         {# modal #}
+         {% include 'categorie/form.html.twig' %}
+    </div>
+
+
+    {{ form_start(form) }}
+
+    <div class="mb-6">
+    {{ form_label(form.categorie, 'product.add.category'|trans, {
+        'label_attr': {'class': 'block text-sm font-medium text-gray-700'}
+        }) }}
+        {{ form_widget(form.categorie) }}
+        {{ form_errors(form.categorie) }}
+    </div>
+
+    <div class="mb-4">
+      {{ form_label(form.nom_produit, 'product.add.name'|trans, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+      {{ form_widget(form.nom_produit, {
+        'attr': {
+          'class': 'mt-1 w-full px-4 py-3 rounded-xl bg-[#F4F5FF] text-sm focus:ring-2 focus:ring-[#8C85FF] focus:outline-none',
+          'placeholder': 'product.add.name_placeholder'|trans
+        }
+      }) }}
+      {{ form_errors(form.nom_produit) }}
+    </div>
+
+    <div class="mb-4">
+      {{ form_label(form.description, 'product.add.description'|trans, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+      {{ form_widget(form.description, {
+        'attr': {
+          'class': 'mt-1 w-full px-4 py-3 rounded-xl bg-[#F4F5FF] text-sm focus:ring-2 focus:ring-[#8C85FF] focus:outline-none',
+          'placeholder': 'product.add.description_placeholder'|trans
+        }
+      }) }}
+      {{ form_errors(form.description) }}
+    </div>
+
+    <div class="mb-4">
+      {{ form_label(form.prix, 'product.add.price'|trans, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+
+      <div class="relative">
+        {{ form_widget(form.prix, {
+          'attr': {
+            'class': 'pr-10 mt-1 w-full px-4 py-3 rounded-xl bg-[#F4F5FF] text-sm focus:ring-2 focus:ring-[#8C85FF] focus:outline-none',
+            'placeholder': 'product.add.price_placeholder'|trans
+          }
+        }) }}
+        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm pointer-events-none">$</span>
+      </div>
+
+      {{ form_errors(form.prix) }}
+    </div>
+
+
+    <div class="mb-4">
+      {{ form_label(form.quantite_dispo, 'product.add.quantity'|trans, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+      {{ form_widget(form.quantite_dispo, {
+        'attr': {
+          'class': 'mt-1 w-full px-4 py-3 rounded-xl bg-[#F4F5FF] text-sm focus:ring-2 focus:ring-[#8C85FF] focus:outline-none',
+          'placeholder': 'product.add.quantity_placeholder'|trans
+        }
+      }) }}
+      {{ form_errors(form.quantite_dispo) }}
+    </div>
+
+    <div
+      data-controller="dropzone"
+      data-dropzone-target="dropzone"
+      data-dropzone-invalid-format-message-value="{{ 'product.add.image_invalid_format'|trans }}"
+      data-dropzone-too-large-message-value="{{ 'product.add.image_too_large'|trans }}"
+      data-dropzone-valid-message-value="{{ 'product.add.image_valid'|trans }}"
+      class="mb-6 border-2 border-dashed border-[#8C85FF] rounded-xl bg-[#F4F5FF] p-6 text-center text-sm text-gray-600 cursor-pointer transition hover:bg-[#D5DFFF]"
+    >
+      <p data-dropzone-target="message" class="mb-2">{{ 'product.add.image_drop'|trans }}</p>
+      <p class="text-xs text-gray-500">{{ 'product.add.image_max_size'|trans }}</p>
+
+      {{ form_widget(form.image_url, {
+        'attr': {
+          'class': 'hidden',
+          'data-dropzone-target': 'input'
+        }
+      }) }}
+
+      <div data-dropzone-target="preview"></div>
+    </div>
+
+
+    <button type="submit" class="w-full bg-[#673DE6] hover:bg-[#8C85FF] text-white font-semibold py-3 rounded-xl shadow-md transition duration-300">
+      {{ 'product.add.submit'|trans }}
+    </button>
+
+    {{ form_end(form) }}
+  </div>
+</div>
+{% endblock %}

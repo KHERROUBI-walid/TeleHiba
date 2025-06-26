@@ -1,0 +1,16 @@
+<form id="lang-form" method="get" class="w-full" data-controller="language-switcher">
+  <select
+    id="lang-switcher"
+    name="locale"
+    data-action="change->language-switcher#submit"
+    class="w-full text-[#673DE6] border border-[#673DE6] rounded-md px-2 py-1 bg-white"
+  >
+    {% set langs = {'fr': 'Français', 'en': 'English', 'ar': 'العربية'} %}
+    {% for code, label in langs %}
+      <option value="{{ code }}" {% if app.request.locale == code %}selected{% endif %}>
+        {{ label }}
+      </option>
+    {% endfor %}
+  </select>
+</form>
+

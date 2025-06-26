@@ -3,3 +3,12 @@
 .bg-hero-img {
   background-image: url('../images/img3.jpg');
 }
+
+/* app/assets/styles/app.css ou tailwind.config.js > theme.extend */
+.btn-primary {
+  @apply bg-[#673DE6] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#8C85FF] transition-colors duration-200;
+}
+
+.btn-secondary {
+  @apply bg-[#D5DFFF] text-[#3B3D4A] px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#8C85FF] hover:text-white transition-colors duration-200;
+}

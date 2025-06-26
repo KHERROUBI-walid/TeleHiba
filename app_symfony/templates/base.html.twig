@@ -1,38 +1,57 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-          {# Flash messages #}
-        <div class="fixed top-5 right-5 z-50 space-y-2 max-w-sm">
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div
-                        class="p-4 rounded shadow text-white
-                        {% if label == 'success' %}
-                            bg-green-500
-                        {% elseif label == 'warning' %}
-                            bg-yellow-400 text-black
-                        {% elseif label == 'error' %}
-                            bg-red-600
-                        {% else %}
-                            bg-blue-500
-                        {% endif %}
-                        ">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+    {# Liens SEO multilingues hreflang #}
+    <link rel="alternate" hreflang="fr" href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'fr'})) }}">
+    <link rel="alternate" hreflang="en" href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'en'})) }}">
+    <link rel="alternate" hreflang="ar" href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'ar'})) }}">
+
+    <title>{% block title %}Bienvenue !{% endblock %}</title>
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body class="bg-[#F4F5FF] text-[#3B3D4A]">
+
+    {# Header #}
+    {% include 'components/header.html.twig' %}
+
+    {# Flash messages centrés #}
+    <div class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-sm mx-auto px-4">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div
+                    class="p-4 rounded shadow text-white text-center
+                    {% if label == 'success' %}
+                        bg-green-500
+                    {% elseif label == 'warning' %}
+                        bg-yellow-400 text-black
+                    {% elseif label == 'error' %}
+                        bg-red-600
+                    {% else %}
+                        bg-blue-500
+                    {% endif %}
+                    ">
+                    {{ message }}
+                </div>
             {% endfor %}
-        </div>
+        {% endfor %}
+    </div>
+
+    <div id="page" dir="{{ app.request.locale == 'ar' ? 'rtl' : 'ltr' }}" class="relative">
         {% block body %}{% endblock %}
-    </body>
+    </div>
+
+    {# Footer #}
+    {% include 'components/footer.html.twig' %}
+
+</body>
 </html>
