@@ -1,45 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'product.add.title'|trans }}{% endblock %}
+{% block title %}
+    {% if isFormEdit %}
+        {{ 'product.edit.title'|trans }}
+    {% else %}
+        {{ 'product.add.title'|trans }}
+    {% endif %}
+{% endblock %}
 
 {% block body %}
 <div class="bg-[#F4F5FF] min-h-screen flex flex-col items-center px-4 py-6">
-
   <div class="flex flex-col items-center mb-8">
-    <h1 class="text-2xl font-bold text-[#3B3D4A]">{{ 'product.add.header'|trans }}</h1>
-    <p class="text-sm text-gray-600">{{ 'product.add.subheader'|trans }}</p>
+    <h1 class="text-2xl font-bold text-[#3B3D4A]">
+      {% if isFormEdit %}
+          {{ 'product.edit.header'|trans }}
+      {% else %}
+          {{ 'product.add.header'|trans }}
+      {% endif %}
+    </h1>
+    <p class="text-sm text-gray-600">
+      {% if isFormEdit %}
+          {{ 'product.edit.subheader'|trans }}
+      {% else %}
+          {{ 'product.add.subheader'|trans }}
+      {% endif %}
+    </p>
   </div>
 
   <div class="bg-white rounded-2xl shadow-md p-6 w-full max-w-md">
 
-    <div data-controller="modal" class="flex justify-end">
+    <div class="flex justify-between mb-4">
+      <a href="{{ app.request.headers.get('referer') }}"
+        class="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-gray-600 border border-gray-400 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        {{ 'global.back'|trans }}
+      </a>
 
-         {# bouton déclencheur #}
-<button
-  data-action="click->modal#open"
-  class="inline-flex items-center gap-1 px-3 py-1.5 mt-2 text-xs font-medium text-[#673DE6] border border-[#673DE6] rounded-lg hover:bg-[#673DE6] hover:text-white transition-colors duration-200"
->
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-  </svg>
-  {{ 'categorie.add.new_option'|trans }}
-</button>
-
-
-
-         {# modal #}
-         {% include 'categorie/form.html.twig' %}
+      <a href="{{ path('app_categorie_index') }}">
+        <button
+          class="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-[#673DE6] border border-[#673DE6] rounded-lg hover:bg-[#673DE6] hover:text-white transition-colors duration-200"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          {{ 'categorie.add.new_option'|trans }}
+        </button>
+      </a>
     </div>
-
 
     {{ form_start(form) }}
 
     <div class="mb-6">
-    {{ form_label(form.categorie, 'product.add.category'|trans, {
-        'label_attr': {'class': 'block text-sm font-medium text-gray-700'}
-        }) }}
-        {{ form_widget(form.categorie) }}
-        {{ form_errors(form.categorie) }}
+      {{ form_label(form.categorie, 'product.add.category'|trans, {
+          'label_attr': {'class': 'block text-sm font-medium text-gray-700'}
+      }) }}
+      {{ form_widget(form.categorie, {
+        'attr': {
+          'class': 'mt-1 w-full px-4 py-3 rounded-xl bg-[#F4F5FF] text-sm focus:ring-2 focus:ring-[#8C85FF] focus:outline-none'
+        }
+      }) }}
+      {{ form_errors(form.categorie) }}
     </div>
 
     <div class="mb-4">
@@ -66,7 +89,6 @@
 
     <div class="mb-4">
       {{ form_label(form.prix, 'product.add.price'|trans, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
-
       <div class="relative">
         {{ form_widget(form.prix, {
           'attr': {
@@ -76,10 +98,8 @@
         }) }}
         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm pointer-events-none">$</span>
       </div>
-
       {{ form_errors(form.prix) }}
     </div>
-
 
     <div class="mb-4">
       {{ form_label(form.quantite_dispo, 'product.add.quantity'|trans, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
@@ -110,12 +130,22 @@
         }
       }) }}
 
-      <div data-dropzone-target="preview"></div>
+      <div data-dropzone-target="preview">
+      {% if isFormEdit and produit.imageUrl %}
+        <img src="{{ asset('uploads/produits/' ~ produit.imageUrl) }}"
+             alt="Current image"
+             class="mx-auto mb-2 max-h-40 object-contain">
+      {% endif %}
     </div>
 
+    </div>
 
     <button type="submit" class="w-full bg-[#673DE6] hover:bg-[#8C85FF] text-white font-semibold py-3 rounded-xl shadow-md transition duration-300">
-      {{ 'product.add.submit'|trans }}
+      {% if isFormEdit %}
+          {{ 'product.edit.submit'|trans }}
+      {% else %}
+          {{ 'product.add.submit'|trans }}
+      {% endif %}
     </button>
 
     {{ form_end(form) }}

@@ -5,7 +5,11 @@
     data-action="change->language-switcher#submit"
     class="w-full text-[#673DE6] border border-[#673DE6] rounded-md px-2 py-1 bg-white"
   >
-    {% set langs = {'fr': 'Français', 'en': 'English', 'ar': 'العربية'} %}
+    {% set langs = {
+      'fr': '🇫🇷 Fr',
+      'en': '🇬🇧 En',
+      'ar': '🇸🇦 Ar'
+    } %}
     {% for code, label in langs %}
       <option value="{{ code }}" {% if app.request.locale == code %}selected{% endif %}>
         {{ label }}
@@ -13,4 +17,3 @@
     {% endfor %}
   </select>
 </form>
-

@@ -10,6 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Bundle\SecurityBundle\Security;
+use App\Entity\Produit;
+use App\Entity\User;
+use App\Form\ProduitForm;
 
 #[Route('/vendeur')]
 #[IsGranted('ROLE_VENDEUR')]
@@ -47,8 +51,6 @@ class VendeurController extends AbstractController
     #[Route('/', name: 'app_vendeur')]
     public function accueilVendeur(): Response
     {
-
-
         return $this->render('vendeur/accueil.html.twig');
     }
 }

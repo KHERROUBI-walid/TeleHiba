@@ -1,3 +1,31 @@
+global:
+  cancel: "إلغاء"
+  back: "رجوع"
+  save: "حفظ"
+  delete: "حذف"
+  edit: "تعديل"
+  confirm: "تأكيد"
+  success: "نجاح"
+  error: "خطأ"
+  loading: "جارٍ التحميل..."
+  not_found: "الصفحة غير موجودة"
+  unauthorized: "دخول غير مصرح"
+  forbidden: "إجراء محظور"
+  server_error: "خطأ في الخادم"
+  yes: "نعم"
+  no: "لا"
+  close: "إغلاق"
+  continue: "متابعة"
+  next: "التالي"
+  previous: "السابق"
+  submit: "إرسال"
+  search: "بحث"
+  filter: "تصفية"
+  clear: "مسح"
+  view: "عرض"
+
+
+
 home:
   hero:
     title: "مرحباً بكم في منصتكم للتكافل الاجتماعي"
@@ -99,29 +127,34 @@ login:
 
 #   Produit form
 product:
-  add:
-    title: "إضافة منتج"
-    header: "منتج جديد"
-    subheader: "املأ الحقول لإنشاء منتج"
-    category: "الفئة"
-    choose_category: "اختر فئة"
-    name: "اسم المنتج"
-    name_placeholder: "مثال: حليب كامل الدسم 1 لتر"
-    description: "الوصف"
-    description_placeholder: "مثال: حليب طازج منتج محلياً"
-    price: "($) السعر"
-    price_placeholder: "مثال: 1.50"
-    quantity: "الكمية المتوفرة"
-    quantity_placeholder: "مثال: 10"
-    available: "متوفر"
-    image: "رابط الصورة"
-    image_placeholder: "مثال: https://example.com/image.jpg"
-    submit: "إضافة المنتج"
-    image_drop: اسحب الصورة وأفلتها هنا أو انقر لاختيار ملف
-    image_max_size: الحد الأقصى 2 ميغابايت، الصيغ المقبولة JPG، PNG
-    image_invalid_format: "صيغة غير مسموحة (فقط jpg، png، webp)"
-    image_too_large: "الملف كبير جداً (الحد الأقصى 2 ميغابايت)"
-    image_valid: "الملف المحدد: %filename%"
+    add:
+        title: "إضافة منتج"
+        header: "منتج جديد"
+        subheader: "املأ الحقول لإنشاء منتج"
+        category: "الفئة"
+        choose_category: "اختر فئة"
+        name: "اسم المنتج"
+        name_placeholder: "مثال: حليب كامل الدسم 1 لتر"
+        description: "الوصف"
+        description_placeholder: "مثال: حليب طازج منتج محلياً"
+        price: "($) السعر"
+        price_placeholder: "مثال: 1.50"
+        quantity: "الكمية المتوفرة"
+        quantity_placeholder: "مثال: 10"
+        available: "متوفر"
+        image: "رابط الصورة"
+        image_placeholder: "مثال: https://example.com/image.jpg"
+        submit: "إضافة المنتج"
+        image_drop: اسحب الصورة وأفلتها هنا أو انقر لاختيار ملف
+        image_max_size: الحد الأقصى 2 ميغابايت، الصيغ المقبولة JPG، PNG
+        image_invalid_format: "صيغة غير مسموحة (فقط jpg، png، webp)"
+        image_too_large: "الملف كبير جداً (الحد الأقصى 2 ميغابايت)"
+        image_valid: "الملف المحدد: %filename%"
+
+    edit:
+        header: "تعديل المنتج"
+        subheader: "قم بتحديث معلومات المنتج"
+        submit: "تحديث المنتج"
 
 
 categorie:
@@ -132,5 +165,4 @@ categorie:
     name_placeholder: "أدخل اسم الفئة"
     new_option: "إضافة فئة جديدة"
 
-global:
-  cancel: "إلغاء"
+

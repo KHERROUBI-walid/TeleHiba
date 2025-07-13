@@ -5,18 +5,18 @@
   <h1 class="text-xl font-bold mb-6 text-center">Espace Vendeur</h1>
 
   <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-    <div data-controller="vendeur-actions" data-vendeur-actions-url-value="{{ path('app_produit_new') }}"
+    <div data-controller="vendeur-actions" data-vendeur-actions-url-value="{{ path('vendeur_produits') }}"
          class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
-      <img src="{{ asset('images/avatar.png') }}" alt="Ajouter un produit"
+      <img src="{{ asset('images/avatar.png') }}" alt="Gérer mes produits"
            class="w-24 h-24 rounded-full object-cover mb-2 shadow" />
-      <span class="text-sm text-center">Ajouter un produit</span>
+      <span class="text-sm text-center">Gérer mes produits</span>
     </div>
 
-    <div data-controller="vendeur-actions" data-vendeur-actions-url-value="{{ path('app_accueil') }}"
+    <div data-controller="vendeur-actions" data-vendeur-actions-url-value="{{ path('app_categorie_index') }}"
          class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
-      <img src="{{ asset('images/avatar.png') }}" alt="Ajouter une catégorie"
+      <img src="{{ asset('images/avatar.png') }}" alt="Gérer mes catégories"
            class="w-24 h-24 rounded-full object-cover mb-2 shadow" />
-      <span class="text-sm text-center">Ajouter une catégorie</span>
+      <span class="text-sm text-center">Gérer mes catégories</span>
     </div>
 
     <div data-controller="vendeur-actions" data-vendeur-actions-url-value="{{ path('app_accueil') }}"

@@ -3,7 +3,7 @@ FROM node:24.2
 
 WORKDIR /var/www/html
 
-# Copier package.json et package-lock.json d'abord pour profiter du cache Docker
+# Copier package.json et package-lock.json
 COPY package*.json ./
 
 # Installer les dépendances npm

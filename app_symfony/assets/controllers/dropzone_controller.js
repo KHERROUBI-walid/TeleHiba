@@ -25,6 +25,9 @@ export default class extends Controller {
             "change",
             this.onInputChange.bind(this)
         );
+
+        // Si une image existe déjà dans le DOM au moment du render, on ne l’efface pas
+        this.initialImage = this.previewTarget.querySelector("img")?.outerHTML || "";
     }
 
     onDragOver(event) {
@@ -50,11 +53,18 @@ export default class extends Controller {
     onInputChange() {
         if (this.inputTarget.files.length > 0) {
             this.validateFile(this.inputTarget.files[0]);
+        } else {
+            // rien à valider si aucun fichier choisi
+            this.restoreInitialPreview();
+            this.messageTarget.textContent = "";
+            this.dropzoneTarget.classList.remove("border-red-500", "border-green-500");
+            this.dropzoneTarget.classList.add("border-[#8C85FF]");
         }
     }
 
+
     validateFile(file) {
-        const maxSize = 2 * 1024 * 1024; // 2 Mo
+        const maxSize = 6 * 1024 * 1024; // 6 MB
         const validTypes = ["image/jpeg", "image/png", "image/webp"];
         let message = "";
         let borderColorClass = "";
@@ -64,12 +74,12 @@ export default class extends Controller {
             message = this.invalidFormatMessageValue;
             borderColorClass = "border-red-500";
             textColorClass = "text-red-600";
-            this.clearPreview();
+            this.restoreInitialPreview();
         } else if (file.size > maxSize) {
             message = this.tooLargeMessageValue;
             borderColorClass = "border-red-500";
             textColorClass = "text-red-600";
-            this.clearPreview();
+            this.restoreInitialPreview();
         } else {
             message = this.validMessageValue.replace("%filename%", file.name);
             borderColorClass = "border-green-500";
@@ -100,5 +110,9 @@ export default class extends Controller {
 
     clearPreview() {
         this.previewTarget.innerHTML = "";
+    }
+
+    restoreInitialPreview() {
+        this.previewTarget.innerHTML = this.initialImage;
     }
 }

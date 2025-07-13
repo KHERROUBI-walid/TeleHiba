@@ -1,3 +1,31 @@
+global:
+  cancel: "Cancel"
+  back: "Back"
+  save: "Save"
+  delete: "Delete"
+  edit: "Edit"
+  confirm: "Confirm"
+  success: "Success"
+  error: "Error"
+  loading: "Loading..."
+  not_found: "Page not found"
+  unauthorized: "Unauthorized access"
+  forbidden: "Forbidden action"
+  server_error: "Server error"
+  yes: "Yes"
+  no: "No"
+  close: "Close"
+  continue: "Continue"
+  next: "Next"
+  previous: "Previous"
+  submit: "Submit"
+  search: "Search"
+  filter: "Filter"
+  clear: "Clear"
+  view: "View"
+
+
+
 home:
   hero:
     title: "Welcome to your social solidarity platform"
@@ -98,29 +126,34 @@ login:
 
 #   Produit form
 product:
-  add:
-    title: "Add a product"
-    header: "New Product"
-    subheader: "Fill in the fields to create a product"
-    category: "Category"
-    choose_category: "Choose a category"
-    name: "Product name"
-    name_placeholder: "e.g., Whole milk 1L"
-    description: "Description"
-    description_placeholder: "e.g., Fresh milk, locally produced"
-    price: "Price ($)"
-    price_placeholder: "e.g., 1.50"
-    quantity: "Available quantity"
-    quantity_placeholder: "e.g., 10"
-    available: "Is available"
-    image: "Image (URL)"
-    image_placeholder: "e.g., https://example.com/image.jpg"
-    submit: "Add product"
-    image_drop: Drag and drop an image here or click to select a file
-    image_max_size: Max size 2MB, accepted formats JPG, PNG
-    image_invalid_format: "Invalid format (jpg, png, webp only)"
-    image_too_large: "File too large (max 2MB)"
-    image_valid: "Selected file: %filename%"
+    add:
+        title: "Add a product"
+        header: "New Product"
+        subheader: "Fill in the fields to create a product"
+        category: "Category"
+        choose_category: "Choose a category"
+        name: "Product name"
+        name_placeholder: "e.g., Whole milk 1L"
+        description: "Description"
+        description_placeholder: "e.g., Fresh milk, locally produced"
+        price: "Price ($)"
+        price_placeholder: "e.g., 1.50"
+        quantity: "Available quantity"
+        quantity_placeholder: "e.g., 10"
+        available: "Is available"
+        image: "Image (URL)"
+        image_placeholder: "e.g., https://example.com/image.jpg"
+        submit: "Add product"
+        image_drop: Drag and drop an image here or click to select a file
+        image_max_size: Max size 2MB, accepted formats JPG, PNG
+        image_invalid_format: "Invalid format (jpg, png, webp only)"
+        image_too_large: "File too large (max 2MB)"
+        image_valid: "Selected file: %filename%"
+
+    edit:
+        header: "Edit product"
+        subheader: "Update product information"
+        submit: "Update product"
 
 
 categorie:
@@ -133,5 +166,3 @@ categorie:
 
 
 
-global:
-  cancel: "Cancel"

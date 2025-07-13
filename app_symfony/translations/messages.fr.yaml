@@ -1,3 +1,30 @@
+global:
+  cancel: "Annuler"
+  back: "Retour"
+  save: "Enregistrer"
+  delete: "Supprimer"
+  edit: "Modifier"
+  confirm: "Confirmer"
+  success: "Succès"
+  error: "Erreur"
+  loading: "Chargement..."
+  not_found: "Page non trouvée"
+  unauthorized: "Accès non autorisé"
+  forbidden: "Action interdite"
+  server_error: "Erreur serveur"
+  yes: "Oui"
+  no: "Non"
+  close: "Fermer"
+  continue: "Continuer"
+  next: "Suivant"
+  previous: "Précédent"
+  submit: "Envoyer"
+  search: "Rechercher"
+  filter: "Filtrer"
+  clear: "Effacer"
+  view: "Voir"
+
+
 home:
   hero:
     title: "Bienvenue sur votre plateforme de solidarité sociale"
@@ -100,30 +127,35 @@ login:
 
 #   Produit form
 product:
-  add:
-    title: "Ajouter un produit"
-    header: "Nouveau produit"
-    subheader: "Remplissez les champs pour créer un produit"
-    category: "Catégorie"
-    choose_category: "Choisissez une catégorie"
-    name: "Nom du produit"
-    name_placeholder: "Ex: Lait entier 1L"
-    description: "Description"
-    description_placeholder: "Ex: Lait frais, produit localement"
-    price: "Prix ($)"
-    price_placeholder: "Ex: 1.50"
-    quantity: "Quantité disponible"
-    quantity_placeholder: "Ex: 10"
-    available: "Est disponible"
-    image: "Image (URL)"
-    image_placeholder: "Ex: https://exemple.com/image.jpg"
-    submit: "Ajouter le produit"
-    image_drop: Glissez-déposez une image ici ou cliquez pour choisir un fichier
-    image_max_size: Taille max 2 Mo, formats acceptés JPG, PNG
-    image_invalid_format: "Format non autorisé (jpg, png, webp)"
-    image_too_large: "Fichier trop volumineux (max 2 Mo)"
-    image_valid: "Fichier sélectionné : %filename%"
+    add:
+        title: "Ajouter un produit"
+        header: "Nouveau produit"
+        subheader: "Remplissez les champs pour créer un produit"
+        category: "Catégorie"
+        choose_category: "Choisissez une catégorie"
+        name: "Nom du produit"
+        name_placeholder: "Ex: Lait entier 1L"
+        description: "Description"
+        description_placeholder: "Ex: Lait frais, produit localement"
+        price: "Prix ($)"
+        price_placeholder: "Ex: 1.50"
+        quantity: "Quantité disponible"
+        quantity_placeholder: "Ex: 10"
+        available: "Est disponible"
+        image: "Image (URL)"
+        image_placeholder: "Ex: https://exemple.com/image.jpg"
+        submit: "Ajouter le produit"
+        image_drop: Glissez-déposez une image ici ou cliquez pour choisir un fichier
+        image_max_size: Taille max 2 Mo, formats acceptés JPG, PNG
+        image_invalid_format: "Format non autorisé (jpg, png, webp)"
+        image_too_large: "Fichier trop volumineux (max 2 Mo)"
+        image_valid: "Fichier sélectionné : %filename%"
 
+
+    edit:
+        header: "Modifier le produit"
+        subheader: "Mettez à jour les informations du produit"
+        submit: "Mettre à jour le produit"
 
 categorie:
   add:
@@ -132,7 +164,29 @@ categorie:
     name: "Nom de la catégorie"
     name_placeholder: "Entrez un nom de catégorie"
     new_option: "Ajouter une nouvelle catégorie"
+    existing: "Catégories existantes"
+    none: Aucune catégorie pour le moment.
 
-global:
-  cancel: "Annuler"
 
+
+famille:
+  home:
+    title: Accueil Famille
+    avatar_alt: Avatar famille
+    notifications: Notifications
+    search_placeholder: Rechercher un produit ou vendeur
+    need_help: Besoin d’aide ?
+    create_order_prompt: Créez votre commande et trouvez un donateur.
+    create_order_button: Créer une commande
+    categories: Catégories
+    see_all: Tout voir
+    products: Produits
+    vendors: Vendeurs
+    funds: Cagnottes
+    current_orders: Commandes en cours
+    no_orders: Aucune commande en cours
+    menu_home: Accueil
+    menu_orders: Commandes
+    menu_new: Nouveau
+    menu_messages: Messages
+    menu_profile: Profil

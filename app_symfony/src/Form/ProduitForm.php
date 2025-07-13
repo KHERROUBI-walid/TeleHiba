@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Produit;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -13,9 +14,9 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Categorie;
 
-class ProduitForm
+class ProduitForm extends AbstractType
 {
-    public static function build(FormBuilderInterface $builder): void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('categorie', EntityType::class, [
@@ -42,35 +43,33 @@ class ProduitForm
             ->add('quantite_dispo', NumberType::class, [
                 'label' => 'Quantité disponible',
             ])
-
-
-        ->add('image_url', FileType::class, [
-            'label' => 'Image du produit',
-            'mapped' => false,
-            'required' => true,
-            'attr' => [
-                'accept' => '.jpg,.jpeg,.png,.webp', // filtre côté HTML
-            ],
-            'constraints' => [
-                new File([
-                    'maxSize' => '2M',
-                    'mimeTypes' => [
-                        'image/jpeg',
-                        'image/png',
-                        'image/webp',
-                    ],
-                    'mimeTypesMessage' => 'Veuillez télécharger une image au format JPG, PNG ou WEBP.',
-                ])
-            ],
-        ]);
+            ->add('image_url', FileType::class, [
+                'label' => 'Image du produit',
+                'mapped' => false,
+                'required' => true,
+                'attr' => [
+                    'accept' => '.jpg,.jpeg,.png,.webp',
+                ],
+                'constraints' => [
+                    new File(
+                        maxSize: '6M',
+                        mimeTypes: [
+                            'image/jpeg',
+                            'image/png',
+                            'image/webp',
+                        ],
+                        mimeTypesMessage: 'Veuillez télécharger une image au format JPG, PNG ou WEBP.',
+                    ),
+                ],
+            ]);
 
     }
 
-    public static function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Produit::class,
+            'is_edit' => false,
         ]);
     }
 }
-

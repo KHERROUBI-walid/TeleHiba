@@ -9,10 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
+use App\Repository\CommandeFamilleRepository;
 
 #[Route('/famille')]
-#[IsGranted('ROLE_FAMILLE')]
+// #[IsGranted('ROLE_FAMILLE')]
 class FamilleController extends AbstractController
 {
     #[Route('/register', name: 'app_register_famille')]
@@ -47,10 +47,16 @@ class FamilleController extends AbstractController
     }
 
     #[Route('/', name: 'app_famille')]
-    public function accueilFamille(): Response
+    public function index(CommandeFamilleRepository $commandeRepo): Response
     {
+                // Vérifier que l'utilisateur a le rôle approprié
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
 
-
-        return $this->render('famille/accueil.html.twig');
+        return $this->render('famille/home.html.twig', [
+            'user' => $user,
+            'commandes' => $commandeRepo->findBy(['famille' => $user->getFamille()]),
+        ]);
     }
-}
+    }
+

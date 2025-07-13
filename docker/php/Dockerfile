@@ -40,7 +40,7 @@ RUN groupadd -g 1000 symfony \
 # Changer d'utilisateur après toutes les opérations root
 USER symfony
 
-# Configurer git (en tant que symfony)
+# Configurer git
 RUN git config --global user.email "khe.walid78@gmail.com"
 RUN git config --global user.name "walid"
 
