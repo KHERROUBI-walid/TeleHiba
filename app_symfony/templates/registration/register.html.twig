@@ -1,0 +1,171 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'register.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="bg-[#F4F5FF] min-h-screen flex flex-col items-center px-4 py-6">
+
+  <!-- Logo + Titre -->
+  <div class="flex flex-col items-center mb-8">
+    <img src="{{ asset('images/Logo1.png') }}" alt="Logo TeleHiba" width="200px" />
+    <p class="text-xs text-gray-500 mt-1">{{ 'register.subtitle'|trans }}</p>
+  </div>
+
+  <!-- Cadre Formulaire -->
+  <div
+    class="bg-white rounded-2xl shadow-md p-6 w-full max-w-md relative overflow-hidden"
+    data-controller="registration"
+    data-registration-type-utilisateur-selector="#{{ registrationForm.typeUtilisateur.vars.id }}"
+    data-registration-step1="#step1"
+    data-registration-step2="#step2"
+    data-registration-next-button="#nextStep"
+    data-registration-prev-button="#prevStep"
+  >
+
+    <!-- Barre de progression en points -->
+    <div id="progress-dots" class="flex justify-center space-x-8 mb-6">
+      <div data-registration-target="dot1" class="w-4 h-4 rounded-full bg-[#8C85FF] opacity-100"></div>
+      <div data-registration-target="dot2" class="w-4 h-4 rounded-full bg-[#8C85FF] opacity-50 animate-pulse"></div>
+    </div>
+
+    <h2 class="text-lg font-semibold text-[#3B3D4A] text-center mb-6">{{ 'register.form_title'|trans }}</h2>
+
+    {{ form_start(registrationForm, {'attr': {'id': 'registration_form'}}) }}
+
+    <!-- Étape 1 -->
+    <div id="step1" data-registration-target="step1" class="space-y-4">
+      {{ form_row(registrationForm.email, {
+        label: 'register.email'|trans,
+        attr: { placeholder: 'register.email_placeholder'|trans }
+      }) }}
+
+      <div class="relative" data-controller="password-visibility">
+        {{ form_row(registrationForm.plainPassword, {
+          label: 'register.password'|trans,
+          row_attr: { class: 'relative' },
+          attr: {
+            placeholder: 'register.password_placeholder'|trans,
+            class: 'mt-1 w-full px-4 py-3 rounded-xl bg-[#F4F5FF] text-sm focus:ring-2 focus:ring-[#8C85FF] focus:outline-none',
+            'data-password-visibility-target': 'input'
+          }
+        }) }}
+
+        <div
+          class="absolute inset-y-0 right-3 flex items-center text-gray-400 text-sm cursor-pointer"
+          data-password-visibility-target="toggle"
+          data-action="click->password-visibility#toggleVisibility"
+        >
+          👁️
+        </div>
+      </div>
+
+      {{ form_row(registrationForm.typeUtilisateur, {
+        attr: {
+          'data-registration-target': 'typeSelect'
+        }
+      }) }}
+
+      {{ form_row(registrationForm.civilite) }}
+
+      {{ form_row(registrationForm.nom, {
+        label: 'register.lastname'|trans,
+        attr: { placeholder: 'register.lastname_placeholder'|trans }
+      }) }}
+
+      {{ form_row(registrationForm.prenom, {
+        label: 'register.firstname'|trans,
+        attr: { placeholder: 'register.firstname_placeholder'|trans }
+      }) }}
+
+      {{ form_row(registrationForm.telephone, {
+        label: 'register.phone'|trans,
+        attr: { placeholder: 'register.phone_placeholder'|trans }
+      }) }}
+
+      <button
+        type="button"
+        id="nextStep"
+        class="w-full bg-[#673DE6] hover:bg-[#8C85FF] text-white font-semibold py-3 rounded-xl shadow-md transition duration-300"
+        data-action="registration#nextStep"
+      >
+        {{ 'register.next_step'|trans }}
+      </button>
+    </div>
+
+    <!-- Étape 2 -->
+    <div id="step2" data-registration-target="step2" class="space-y-4 hidden">
+      {{ form_row(registrationForm.adresse, {
+        label: 'register.address'|trans,
+        attr: {
+          placeholder: 'register.address_placeholder'|trans,
+          'data-registration-target': 'adresse'
+        }
+      }) }}
+
+      {{ form_row(registrationForm.complAdresse, {
+        label: 'register.address_complement'|trans,
+        attr: {
+          placeholder: 'register.address_complement_placeholder'|trans,
+          'data-registration-target': 'complAdresse'
+        }
+      }) }}
+
+      {{ form_row(registrationForm.codePostal, {
+        label: 'register.zip'|trans,
+        attr: {
+          placeholder: 'register.zip_placeholder'|trans,
+          'data-registration-target': 'codePostal'
+        }
+      }) }}
+
+      {{ form_row(registrationForm.ville, {
+        label: 'register.city'|trans,
+        attr: {
+          placeholder: 'register.city_placeholder'|trans,
+          'data-registration-target': 'ville'
+        }
+      }) }}
+
+      {{ form_row(registrationForm.pays, {
+        label: 'register.country'|trans,
+        attr: {
+          placeholder: 'register.country_placeholder'|trans,
+          'data-registration-target': 'pays'
+        }
+      }) }}
+
+      <div class="flex items-center space-x-2">
+        {{ form_widget(registrationForm.agreeTerms) }}
+        {{ form_label(registrationForm.agreeTerms, 'register.terms_agree'|trans, {'label_attr': {'class': 'text-sm text-gray-700'}}) }}
+        {{ form_errors(registrationForm.agreeTerms) }}
+      </div>
+
+      <div class="flex justify-between gap-x-2 mt-6">
+        <button
+          type="button"
+          id="prevStep"
+          class="w-1/2 bg-gray-200 hover:bg-gray-300 text-[#3B3D4A] font-semibold py-3 px-2 rounded-xl shadow-sm transition duration-300"
+          data-action="registration#prevStep"
+        >
+          {{ 'register.prev_step'|trans }}
+        </button>
+
+        <button
+          type="submit"
+          class="w-1/2 bg-[#673DE6] hover:bg-[#8C85FF] text-white font-semibold py-3 px-2 rounded-xl shadow-md transition duration-300"
+        >
+          {{ 'register.submit'|trans }}
+        </button>
+      </div>
+    </div>
+
+    {{ form_end(registrationForm) }}
+
+    <p class="mt-4 text-center text-sm">
+      {{ 'register.already_have_account'|trans }}
+      <a href="{{ path('app_login') }}" class="text-[#673DE6] font-semibold hover:underline">{{ 'register.login'|trans }}</a>
+    </p>
+
+  </div>
+</div>
+{% endblock %}

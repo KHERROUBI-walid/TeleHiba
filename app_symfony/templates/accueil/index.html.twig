@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'home.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="bg-[#F4F5FF] text-[#3B3D4A]">
+
+  <!-- Section hero -->
+  <section class="relative h-[80vh] bg-hero-img bg-cover bg-center text-white">
+    <div class="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center px-4 space-y-6">
+      <h1 class="text-xl md:text-2xl lg:text-4xl">{{ 'home.hero.title'|trans }}</h1>
+      <p class="text-base md:text-lg max-w-xl">{{ 'home.hero.subtitle'|trans }}</p>
+      <div class="flex flex-col sm:flex-row items-center gap-4 mt-4">
+        <a href="{{ path('app_donateur') }}"
+           class="bg-[#CCFF00] text-black font-bold py-3 px-6 rounded-full w-[150px] hover:bg-green-400 transition text-center">
+          {{ 'home.hero.donateButton'|trans }}
+        </a>
+        <div class="flex flex-col items-center">
+          <span class="mb-2 text-sm italic text-gray-300">{{ 'home.hero.askQuestion'|trans }}</span>
+          <button onclick="document.getElementById('section-inscription').scrollIntoView({ behavior: 'smooth' })"
+                  class="bg-[#673DE6] text-white font-bold py-3 px-6 rounded-full w-[150px] hover:bg-[#8C85FF] transition">
+            {{ 'home.hero.startButton'|trans }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section inscription -->
+  <section id="section-inscription" class="flex flex-col md:flex-row gap-4 px-8 py-8">
+    <div class="flex-1 rounded-xl text-center text-white bg-gradient-to-br from-[#673DE6] to-[#8C85FF] p-6">
+      <div class="text-lg font-semibold mb-2">👪 {{ 'home.section.families.title'|trans }}</div>
+      <p>{{ 'home.section.families.text'|trans }}</p>
+    </div>
+    <div class="flex-1 rounded-xl text-center text-[#3B3D4A] border-2 border-[#CCFF00] p-6">
+      <div class="text-lg font-semibold mb-2">💜 {{ 'home.section.donors.title'|trans }}</div>
+      <p>{{ 'home.section.donors.text'|trans }}</p>
+    </div>
+    <div class="flex-1 rounded-xl text-center bg-white shadow-md p-6">
+      <div class="text-lg font-semibold mb-2">🏪 {{ 'home.section.vendors.title'|trans }}</div>
+      <p>{{ 'home.section.vendors.text'|trans }}</p>
+    </div>
+  </section>
+
+  <!-- Bouton d'inscription -->
+  <div class="text-center mt-8">
+    <a href="{{ path('app_register') }}"
+       class="bg-[#673DE6] text-white font-bold py-3 px-8 mb-8 rounded-lg shadow-lg hover:bg-[#8C85FF] transition inline-block">
+      {{ 'home.registerButton'|trans }}
+    </a>
+  </div>
+
+  <!-- Section fonctionnement -->
+  <section class="bg-white px-8 py-8 mt-8 text-center">
+    <h2 class="text-xl md:text-2xl font-semibold mb-6">{{ 'home.howItWorks.title'|trans }}</h2>
+    <ul class="space-y-4 max-w-md mx-auto">
+      <li class="flex items-center ltr:justify-end rtl:justify-start text-base md:text-lg">
+        <span class="w-[30px] h-[30px] rounded-full bg-[#673DE6] text-white font-bold text-center leading-[30px] ltr:ml-2 rtl:ml-0 rtl:mr-2">1</span>
+        {{ 'home.howItWorks.step1'|trans }}
+      </li>
+      <li class="flex items-center ltr:justify-end rtl:justify-start text-base md:text-lg">
+        <span class="w-[30px] h-[30px] rounded-full bg-[#8C85FF] text-white font-bold text-center leading-[30px] ltr:ml-2 rtl:ml-0 rtl:mr-2">2</span>
+        {{ 'home.howItWorks.step2'|trans }}
+      </li>
+      <li class="flex items-center ltr:justify-end rtl:justify-start text-base md:text-lg">
+        <span class="w-[30px] h-[30px] rounded-full bg-[#CCFF00] text-black font-bold text-center leading-[30px] ltr:ml-2 rtl:ml-0 rtl:mr-2">3</span>
+        {{ 'home.howItWorks.step3'|trans }}
+      </li>
+      <li class="flex items-center ltr:justify-end rtl:justify-start text-base md:text-lg">
+        <span class="w-[30px] h-[30px] rounded-full bg-[#2ecc71] text-white font-bold text-center leading-[30px] ltr:ml-2 rtl:ml-0 rtl:mr-2">4</span>
+        {{ 'home.howItWorks.step4'|trans }}
+      </li>
+    </ul>
+  </section>
+
+</div>
+{% endblock %}

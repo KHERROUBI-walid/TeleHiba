@@ -31,7 +31,7 @@ class CommandeFamille
     #[Gedmo\Timestampable(on: 'update')]
     private \DateTimeInterface $dateMiseAJour;
 
-    #[ORM\ManyToOne(targetEntity: Famille::class, inversedBy: 'commandesfamille')]
+    #[ORM\ManyToOne(targetEntity: Famille::class, inversedBy: 'commandesFamille')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Famille $famille = null;
 

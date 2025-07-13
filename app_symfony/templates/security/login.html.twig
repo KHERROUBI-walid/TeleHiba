@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'login.title'|trans }} | TeleHiba{% endblock %}
+
+{% block body %}
+<div class="bg-[#F4F5FF] min-h-screen flex flex-col items-center px-4 py-6 mt-10">
+  <!-- Cadre Formulaire -->
+  <div class="bg-white rounded-2xl shadow-md p-6 w-full max-w-sm">
+
+    <!-- Titre -->
+    <h2 class="text-lg font-semibold text-[#3B3D4A] mb-6 text-center">
+      {{ 'login.heading'|trans }}
+    </h2>
+
+    {% if error %}
+      <div class="text-red-600 text-sm text-center mb-4">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+      </div>
+    {% endif %}
+
+    {% if app.user %}
+      <div class="text-sm text-center text-green-600 mb-4">
+        {{ 'login.logged_in_as'|trans({ '%username%': app.user.userIdentifier }) }}
+        <a href="{{ path('app_logout') }}" class="underline text-purple-600">{{ 'login.logout'|trans }}</a>
+      </div>
+    {% endif %}
+
+    <!-- Formulaire -->
+    <form method="post" class="space-y-4">
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700">
+          {{ 'login.email_label'|trans }}
+        </label>
+        <input
+          type="email"
+          id="username"
+          name="_username"
+          value="{{ last_username }}"
+          required
+          autofocus
+          placeholder="{{ 'login.email_placeholder'|trans }}"
+          class="mt-1 w-full px-4 py-3 rounded-xl bg-[#F4F5FF] text-sm focus:ring-2 focus:ring-[#8C85FF] focus:outline-none"
+        />
+      </div>
+
+      <div data-controller="password-visibility">
+        <label for="password" class="block text-sm font-medium text-gray-700">
+          {{ 'login.password_label'|trans }}
+        </label>
+        <div class="relative">
+          <input
+            type="password"
+            id="password"
+            name="_password"
+            required
+            placeholder="{{ 'login.password_placeholder'|trans }}"
+            data-password-visibility-target="input"
+            class="mt-1 w-full px-4 py-3 rounded-xl bg-[#F4F5FF] text-sm pr-10 focus:ring-2 focus:ring-[#8C85FF] focus:outline-none"
+          />
+          <div
+            class="absolute inset-y-0 right-3 flex items-center text-gray-400 text-sm cursor-pointer"
+            data-password-visibility-target="toggle"
+            data-action="click->password-visibility#toggleVisibility"
+          >
+            👁️
+          </div>
+        </div>
+        <a href="#" class="text-sm text-[#673DE6] hover:underline mt-1 inline-block">
+          {{ 'login.forgot_password'|trans }}
+        </a>
+      </div>
+
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+      <button type="submit"
+        class="w-full bg-[#673DE6] hover:bg-[#8C85FF] text-white font-semibold py-3 rounded-xl shadow-md transition duration-300">
+        {{ 'login.submit'|trans }}
+      </button>
+    </form>
+
+    <!-- ou continuer avec -->
+    <div class="my-4 text-center text-gray-500 text-sm">
+      {{ 'login.or_continue_with'|trans }}
+    </div>
+    <div class="flex justify-center space-x-4">
+      <button class="bg-[#F4F5FF] hover:bg-gray-200 p-3 rounded-xl transition">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="h-5 w-5" />
+      </button>
+      <button class="bg-[#F4F5FF] hover:bg-gray-200 p-3 rounded-xl transition">
+        <img src="https://www.svgrepo.com/show/157818/facebook.svg" alt="Facebook" class="h-5 w-5" />
+      </button>
+    </div>
+
+    <!-- S'inscrire -->
+    <p class="mt-4 text-center text-sm">
+      {{ 'login.no_account'|trans }}
+      <a href="{{ path('app_register') }}" class="text-[#673DE6] font-semibold hover:underline">
+        {{ 'login.register'|trans }}
+      </a>
+    </p>
+  </div>
+</div>
+{% endblock %}

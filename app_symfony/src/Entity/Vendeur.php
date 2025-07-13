@@ -74,10 +74,16 @@ class Vendeur
 
     public function setUser(?User $user): static
     {
+        if ($this->user === $user) {
+            return $this;
+        }
+
+        $this->user = $user;
+
         if ($user && $user->getVendeur() !== $this) {
             $user->setVendeur($this);
         }
-        $this->user = $user;
+
         return $this;
     }
 

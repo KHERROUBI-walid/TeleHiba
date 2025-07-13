@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'home.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="min-h-screen flex flex-col bg-[#F4F5FF] text-[#3B3D4A]">
+  <!-- Header -->
+  <header class="flex justify-between items-center p-4 bg-[#673DE6] text-white">
+    <div class="flex items-center space-x-2">
+      <img src="{{ asset('images/avatar.png') }}" alt="{{ 'home.avatar_alt'|trans }}" class="w-10 h-10 rounded-full">
+      <div>
+        <p class="text-sm font-semibold">{{ user.famille.nom }}</p>
+        <p class="text-xs">{{ user.email }}</p>
+      </div>
+    </div>
+    <button aria-label="{{ 'home.notifications'|trans }}" class="text-xl">🔔</button>
+  </header>
+
+  <!-- Search -->
+  <section class="bg-[#8C85FF] p-4 flex rounded-b-lg">
+    <div class="flex bg-[#D5DFFF] rounded-lg flex-1 items-center px-2">
+      <span class="text-sm">📍 {{ user.famille.ville }}</span>
+      <input type="text" placeholder="{{ 'home.search_placeholder'|trans }}" class="flex-1 bg-transparent outline-none px-2 text-sm">
+      <button aria-label="Search">🔍</button>
+    </div>
+  </section>
+
+  <main class="flex-1 p-4 space-y-6">
+    <!-- Call to action -->
+    <section class="bg-[#3B3D4A] text-white p-4 rounded-lg flex justify-between items-center">
+      <div>
+        <p class="text-lg font-bold">{{ 'home.need_help'|trans }}</p>
+        <p class="text-sm">{{ 'home.create_order_prompt'|trans }}</p>
+        <a href="{{ path('famille_commande_new') }}" class="mt-2 inline-block bg-[#CCFF00] text-[#3B3D4A] px-3 py-1 rounded">
+          {{ 'home.create_order_button'|trans }}
+        </a>
+      </div>
+      <img src="{{ asset('images/illustration.png') }}" alt="" class="w-16 h-16">
+    </section>
+
+    <!-- Categories -->
+    <section>
+      <div class="flex justify-between mb-2">
+        <p class="font-semibold">{{ 'home.categories'|trans }}</p>
+        <a href="#" class="text-sm text-[#673DE6]">{{ 'home.see_all'|trans }}</a>
+      </div>
+      <div class="grid grid-cols-3 gap-2">
+        <div class="bg-[#D5DFFF] text-center p-2 rounded-lg">{{ 'home.products'|trans }}</div>
+        <div class="bg-[#D5DFFF] text-center p-2 rounded-lg">{{ 'home.vendors'|trans }}</div>
+        <div class="bg-[#D5DFFF] text-center p-2 rounded-lg">{{ 'home.funds'|trans }}</div>
+      </div>
+    </section>
+
+    <!-- Orders -->
+    <section>
+      <div class="flex justify-between mb-2">
+        <p class="font-semibold">{{ 'home.current_orders'|trans }}</p>
+        <a href="#" class="text-sm text-[#673DE6]">{{ 'home.see_all'|trans }}</a>
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+        {% for commande in commandes %}
+          <div class="bg-[#8C85FF] text-white p-2 rounded-lg">
+            <p class="font-semibold">{{ commande.reference }}</p>
+            <p class="text-xs">{{ commande.statut }}</p>
+          </div>
+        {% else %}
+          <p>{{ 'home.no_orders'|trans }}</p>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#3B3D4A] text-white flex justify-around py-2 text-sm">
+    <a href="#" class="flex flex-col items-center">🏠<span>{{ 'home.menu_home'|trans }}</span></a>
+    <a href="#" class="flex flex-col items-center">📝<span>{{ 'home.menu_orders'|trans }}</span></a>
+    <a href="{{ path('famille_commande_new') }}" class="flex flex-col items-center">➕<span>{{ 'home.menu_new'|trans }}</span></a>
+    <a href="#" class="flex flex-col items-center">💬<span>{{ 'home.menu_messages'|trans }}</span></a>
+    <a href="#" class="flex flex-col items-center">👤<span>{{ 'home.menu_profile'|trans }}</span></a>
+  </footer>
+</div>
+{% endblock %}

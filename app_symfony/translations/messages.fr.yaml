@@ -1,0 +1,192 @@
+global:
+  cancel: "Annuler"
+  back: "Retour"
+  save: "Enregistrer"
+  delete: "Supprimer"
+  edit: "Modifier"
+  confirm: "Confirmer"
+  success: "Succès"
+  error: "Erreur"
+  loading: "Chargement..."
+  not_found: "Page non trouvée"
+  unauthorized: "Accès non autorisé"
+  forbidden: "Action interdite"
+  server_error: "Erreur serveur"
+  yes: "Oui"
+  no: "Non"
+  close: "Fermer"
+  continue: "Continuer"
+  next: "Suivant"
+  previous: "Précédent"
+  submit: "Envoyer"
+  search: "Rechercher"
+  filter: "Filtrer"
+  clear: "Effacer"
+  view: "Voir"
+
+
+home:
+  hero:
+    title: "Bienvenue sur votre plateforme de solidarité sociale"
+    subtitle: "Nous connectons les familles dans le besoin, les donateurs et les commerçants avec transparence et simplicité"
+    donateButton: "Faire un don direct"
+    askQuestion: "Vous êtes une famille ou un commerçant ?"
+    startButton: "Cliquez ici pour commencer"
+  section:
+    families:
+      title: "Pour les familles"
+      text: "Obtenez l'aide dont vous avez besoin"
+    donors:
+      title: "Pour les donateurs"
+      text: "Contribuez au bonheur des familles dans le besoin"
+    vendors:
+      title: "Pour les commerçants"
+      text: "Rejoignez-nous en tant que partenaire commercial"
+  registerButton: "Inscrivez-vous maintenant"
+  howItWorks:
+    title: "Comment fonctionne la plateforme ?"
+    step1: "La famille envoie une demande"
+    step2: "Le donateur effectue le paiement"
+    step3: "Notification au commerçant et à la famille"
+    step4: "Réception de la commande"
+
+
+register:
+  title: "Inscription"
+  subtitle: "Créer un compte solidaire"
+  form_title: "Créer un compte"
+
+  email: "Adresse e-mail"
+  email_placeholder: "votre@email.com"
+
+  password: "Mot de passe"
+  password_placeholder: "6 caractères minimum"
+
+  account_type:
+    label: "Type de compte"
+    placeholder: "Sélectionnez un type de compte"
+    famille: "Famille"
+    donateur: "Donateur"
+    vendeur: "Vendeur"
+
+  civility:
+    label: "Civilité"
+    placeholder: "Sélectionnez ..."
+    mme: "Mme"
+    mr: "M."
+
+  lastname: "Nom"
+  lastname_placeholder: "Votre nom"
+
+  firstname: "Prénom"
+  firstname_placeholder: "Votre prénom"
+
+  phone: "Téléphone"
+  phone_placeholder: "06 12 34 56 78"
+
+  address: "Adresse"
+  address_placeholder: "Numéro et rue"
+
+  address_complement: "Complément d’adresse"
+  address_complement_placeholder: "Appartement, étage…"
+
+  zip: "Code postal"
+  zip_placeholder: "75000"
+
+  city: "Ville"
+  city_placeholder: "Paris"
+
+  country: "Pays"
+  country_placeholder: "France"
+
+  terms_agree: "J’accepte les conditions d’utilisation"
+
+  next_step: "Étape suivante"
+  prev_step: "Étape précédente"
+  submit: "S'inscrire"
+
+  already_have_account: "Vous avez déjà un compte ?"
+  login: "Se connecter"
+
+
+login:
+  title: "Connexion"
+  heading: "Se connecter"
+  logged_in_as: "Vous êtes connecté en tant que %username%"
+  logout: "Se déconnecter"
+  email_label: "Email"
+  email_placeholder: "votre@email.com"
+  password_label: "Mot de passe"
+  password_placeholder: "********"
+  forgot_password: "Mot de passe oublié ?"
+  submit: "Se connecter"
+  or_continue_with: "ou continuer avec"
+  no_account: "Pas encore de compte ?"
+  register: "S'inscrire"
+
+
+#   Produit form
+product:
+    add:
+        title: "Ajouter un produit"
+        header: "Nouveau produit"
+        subheader: "Remplissez les champs pour créer un produit"
+        category: "Catégorie"
+        choose_category: "Choisissez une catégorie"
+        name: "Nom du produit"
+        name_placeholder: "Ex: Lait entier 1L"
+        description: "Description"
+        description_placeholder: "Ex: Lait frais, produit localement"
+        price: "Prix ($)"
+        price_placeholder: "Ex: 1.50"
+        quantity: "Quantité disponible"
+        quantity_placeholder: "Ex: 10"
+        available: "Est disponible"
+        image: "Image (URL)"
+        image_placeholder: "Ex: https://exemple.com/image.jpg"
+        submit: "Ajouter le produit"
+        image_drop: Glissez-déposez une image ici ou cliquez pour choisir un fichier
+        image_max_size: Taille max 2 Mo, formats acceptés JPG, PNG
+        image_invalid_format: "Format non autorisé (jpg, png, webp)"
+        image_too_large: "Fichier trop volumineux (max 2 Mo)"
+        image_valid: "Fichier sélectionné : %filename%"
+
+
+    edit:
+        header: "Modifier le produit"
+        subheader: "Mettez à jour les informations du produit"
+        submit: "Mettre à jour le produit"
+
+categorie:
+  add:
+    title: "Ajouter une nouvelle catégorie"
+    submit: "Ajouter"
+    name: "Nom de la catégorie"
+    name_placeholder: "Entrez un nom de catégorie"
+    new_option: "Ajouter une nouvelle catégorie"
+    existing: "Catégories existantes"
+    none: Aucune catégorie pour le moment.
+
+
+
+famille:
+  home:
+    title: Accueil Famille
+    avatar_alt: Avatar famille
+    notifications: Notifications
+    search_placeholder: Rechercher un produit ou vendeur
+    need_help: Besoin d’aide ?
+    create_order_prompt: Créez votre commande et trouvez un donateur.
+    create_order_button: Créer une commande
+    categories: Catégories
+    see_all: Tout voir
+    products: Produits
+    vendors: Vendeurs
+    funds: Cagnottes
+    current_orders: Commandes en cours
+    no_orders: Aucune commande en cours
+    menu_home: Accueil
+    menu_orders: Commandes
+    menu_new: Nouveau
+    menu_messages: Messages
+    menu_profile: Profil

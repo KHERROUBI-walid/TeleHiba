@@ -1,17 +1,4 @@
 services:
-  php:
-    build:
-      context: ./docker/php
-    container_name: hiba_php
-    volumes:
-      - ./app_symfony:/var/www/html
-    environment:
-      PHP_IDE_CONFIG: "serverName=hiba_projet"
-    depends_on:
-      - mysql
-    networks:
-      - hiba_network
-
   nginx:
     image: nginx:stable
     container_name: hiba_nginx
@@ -25,18 +12,46 @@ services:
     networks:
       - hiba_network
 
+  php:
+    build:
+      context: ./app_symfony
+      dockerfile: ../docker/php/Dockerfile
+    container_name: hiba_php
+    volumes:
+      - ./app_symfony:/var/www/html
+    environment:
+      PHP_IDE_CONFIG: "serverName=hiba_projet"
+    depends_on:
+      - mysql
+    networks:
+      - hiba_network
+
+
+  frontend:
+    build:
+      context: ./app_symfony
+      dockerfile: ../docker/node/Dockerfile
+    container_name: hiba_frontend
+    volumes:
+      - ./app_symfony:/var/www/html
+    working_dir: /var/www/html
+    command: bash -c "npm install && npm run dev -- --watch"
+    depends_on:
+      - php
+    networks:
+      - hiba_network
+
   mysql:
     image: mysql:8.0
     container_name: hiba_mysql
     env_file:
-      - app_symfony/.env
+      - app_symfony/.env.local
     ports:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
       - hiba_network
-
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -51,14 +66,12 @@ services:
     networks:
       - hiba_network
 
-
-###> symfony/mailer ###
   mailer:
     image: axllent/mailpit
     container_name: hiba_mailpit
     ports:
-      - "1081:1081"  # Web UI
-      - "1026:1026"  # SMTP port
+      - "8025:8025"  # Web UI
+      - "1025:1025"  # SMTP port
     environment:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1

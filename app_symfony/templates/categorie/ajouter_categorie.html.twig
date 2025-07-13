@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'categorie.add.title'|trans }} | TeleHiba{% endblock %}
+
+{% block body %}
+<div class="bg-[#F4F5FF] min-h-screen flex flex-col items-center px-4 py-6 mt-10">
+  <div class="bg-white rounded-2xl shadow-md p-6 w-full max-w-sm">
+  <a href={{ app.request.headers.get('referer') }}
+    class="inline-flex items-center gap-1 mb-3 px-3 py-1.5 text-xs font-medium text-gray-600 border border-gray-400 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    {{ 'global.back'|trans }}
+  </a>
+
+  <h2 class="text-lg font-semibold text-[#3B3D4A] mb-6 text-center">
+      {{ 'categorie.add.title'|trans }}
+    </h2>
+
+
+    {{ form_start(categorieForm, {
+      'attr': {'class': 'space-y-4'}
+    }) }}
+
+      <div>
+        {{ form_label(categorieForm.nom_categorie, 'categorie.add.name'|trans, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+        {{ form_widget(categorieForm.nom_categorie, {
+          'attr': {
+            'class': 'mt-1 w-full px-4 py-3 rounded-xl bg-[#F4F5FF] text-sm focus:ring-2 focus:ring-[#8C85FF] focus:outline-none',
+            'placeholder': 'categorie.add.name_placeholder'|trans
+          }
+        }) }}
+        {{ form_errors(categorieForm.nom_categorie) }}
+      </div>
+
+      <button type="submit"
+        class="w-full bg-[#673DE6] hover:bg-[#8C85FF] text-white font-semibold py-3 rounded-xl shadow-md transition duration-300">
+        {{ 'categorie.add.submit'|trans }}
+      </button>
+
+    {{ form_end(categorieForm) }}
+
+    <div class="mt-6">
+      <h3 class="text-sm font-semibold text-gray-700 mb-3">
+        {{ 'categorie.add.existing'|trans }}
+      </h3>
+
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {% for cat in categories %}
+          <li class="bg-[#F4F5FF] text-[#3B3D4A] px-3 py-2 rounded-xl shadow-sm text-sm font-medium flex justify-between items-center">
+            <span class="flex items-center gap-2">
+              🏷️ {{ cat.nomCategorie }}
+            </span>
+
+            <form method="post" action="{{ path('app_categorie_delete', {'id': cat.id}) }}" onsubmit="return confirm('{{ 'categorie.delete_confirm'|trans }}');">
+              <input type="hidden" name="_token" value="{{ csrf_token('delete-categorie' ~ cat.id) }}">
+              <button
+                type="submit"
+                class="text-red-500 hover:text-red-700 text-xs font-bold px-2 py-1 rounded"
+                aria-label="{{ 'categorie.delete'|trans }}"
+              >
+                ✕
+              </button>
+            </form>
+          </li>
+        {% else %}
+          <li class="text-sm text-gray-400 italic">
+            {{ 'categorie.add.none'|trans }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

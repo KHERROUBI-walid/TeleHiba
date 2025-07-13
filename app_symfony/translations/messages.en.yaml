@@ -1,0 +1,168 @@
+global:
+  cancel: "Cancel"
+  back: "Back"
+  save: "Save"
+  delete: "Delete"
+  edit: "Edit"
+  confirm: "Confirm"
+  success: "Success"
+  error: "Error"
+  loading: "Loading..."
+  not_found: "Page not found"
+  unauthorized: "Unauthorized access"
+  forbidden: "Forbidden action"
+  server_error: "Server error"
+  yes: "Yes"
+  no: "No"
+  close: "Close"
+  continue: "Continue"
+  next: "Next"
+  previous: "Previous"
+  submit: "Submit"
+  search: "Search"
+  filter: "Filter"
+  clear: "Clear"
+  view: "View"
+
+
+
+home:
+  hero:
+    title: "Welcome to your social solidarity platform"
+    subtitle: "Connecting families in need, donors, and merchants with transparency and ease"
+    donateButton: "Donate directly"
+    askQuestion: "Are you a family or a merchant?"
+    startButton: "Click here to get started"
+  section:
+    families:
+      title: "For Families"
+      text: "Get the help you need"
+    donors:
+      title: "For Donors"
+      text: "Contribute to bringing joy to families in need"
+    vendors:
+      title: "For Merchants"
+      text: "Join us as a business partner"
+  registerButton: "Register Now"
+  howItWorks:
+    title: "How does the platform work?"
+    step1: "The family sends a request"
+    step2: "The donor makes the payment"
+    step3: "Notification to merchant and family"
+    step4: "Order received"
+
+register:
+  title: "Sign up"
+  subtitle: "Create a solidarity account"
+  form_title: "Create an account"
+
+  email: "Email address"
+  email_placeholder: "your@email.com"
+
+  password: "Password"
+  password_placeholder: "At least 6 characters"
+
+  account_type:
+    label: "Account type"
+    placeholder: "Select an account type"
+    famille: "Family"
+    donateur: "Donor"
+    vendeur: "Seller"
+
+  civility:
+    label: "Civility"
+    placeholder: "Select..."
+    mme: "Ms."
+    mr: "Mr."
+
+
+  lastname: "Last name"
+  lastname_placeholder: "Your last name"
+
+  firstname: "First name"
+  firstname_placeholder: "Your first name"
+
+  phone: "Phone"
+  phone_placeholder: "e.g. 123-456-7890"
+
+  address: "Address"
+  address_placeholder: "Street and number"
+
+  address_complement: "Address complement"
+  address_complement_placeholder: "Apartment, floor..."
+
+  zip: "Postal code"
+  zip_placeholder: "e.g. 12345"
+
+  city: "City"
+  city_placeholder: "e.g. Paris"
+
+  country: "Country"
+  country_placeholder: "France"
+
+  terms_agree: "I accept the terms of use"
+
+  next_step: "Next step"
+  prev_step: "Previous step"
+  submit: "Sign up"
+
+  already_have_account: "Already have an account?"
+  login: "Log in"
+
+login:
+  title: "Login"
+  heading: "Sign in"
+  logged_in_as: "You are logged in as %username%"
+  logout: "Log out"
+  email_label: "Email"
+  email_placeholder: "your@email.com"
+  password_label: "Password"
+  password_placeholder: "********"
+  forgot_password: "Forgot password?"
+  submit: "Log in"
+  or_continue_with: "or continue with"
+  no_account: "Don't have an account yet?"
+  register: "Register"
+
+#   Produit form
+product:
+    add:
+        title: "Add a product"
+        header: "New Product"
+        subheader: "Fill in the fields to create a product"
+        category: "Category"
+        choose_category: "Choose a category"
+        name: "Product name"
+        name_placeholder: "e.g., Whole milk 1L"
+        description: "Description"
+        description_placeholder: "e.g., Fresh milk, locally produced"
+        price: "Price ($)"
+        price_placeholder: "e.g., 1.50"
+        quantity: "Available quantity"
+        quantity_placeholder: "e.g., 10"
+        available: "Is available"
+        image: "Image (URL)"
+        image_placeholder: "e.g., https://example.com/image.jpg"
+        submit: "Add product"
+        image_drop: Drag and drop an image here or click to select a file
+        image_max_size: Max size 2MB, accepted formats JPG, PNG
+        image_invalid_format: "Invalid format (jpg, png, webp only)"
+        image_too_large: "File too large (max 2MB)"
+        image_valid: "Selected file: %filename%"
+
+    edit:
+        header: "Edit product"
+        subheader: "Update product information"
+        submit: "Update product"
+
+
+categorie:
+  add:
+    title: "Add a new category"
+    submit: "Add"
+    name: "Category name"
+    name_placeholder: "Enter a category name"
+    new_option: "Add a new category"
+
+
+

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="p-4">
+  <h1 class="text-xl font-bold mb-6 text-center">Espace Vendeur</h1>
+
+  <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+    <div data-controller="vendeur-actions" data-vendeur-actions-url-value="{{ path('vendeur_produits') }}"
+         class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
+      <img src="{{ asset('images/avatar.png') }}" alt="Gérer mes produits"
+           class="w-24 h-24 rounded-full object-cover mb-2 shadow" />
+      <span class="text-sm text-center">Gérer mes produits</span>
+    </div>
+
+    <div data-controller="vendeur-actions" data-vendeur-actions-url-value="{{ path('app_categorie_index') }}"
+         class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
+      <img src="{{ asset('images/avatar.png') }}" alt="Gérer mes catégories"
+           class="w-24 h-24 rounded-full object-cover mb-2 shadow" />
+      <span class="text-sm text-center">Gérer mes catégories</span>
+    </div>
+
+    <div data-controller="vendeur-actions" data-vendeur-actions-url-value="{{ path('app_accueil') }}"
+         class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
+      <img src="{{ asset('images/avatar.png') }}" alt="Commandes reçues"
+           class="w-24 h-24 rounded-full object-cover mb-2 shadow" />
+      <span class="text-sm text-center">Commandes reçues</span>
+    </div>
+
+    <div data-controller="vendeur-actions" data-vendeur-actions-url-value="{{ path('app_accueil') }}"
+         class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
+      <img src="{{ asset('images/avatar.png') }}" alt="Mes statistiques"
+           class="w-24 h-24 rounded-full object-cover mb-2 shadow" />
+      <span class="text-sm text-center">Mes statistiques</span>
+    </div>
+  </div>
+</div>
+{% endblock %}
